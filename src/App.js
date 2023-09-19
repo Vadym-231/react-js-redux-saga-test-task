@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Suspense} from 'react';
+import {Routes, Route} from 'react-router-dom';
+import './styles/style.scss';
+import ErrorBoundary from './Components/ErrorBoundary';
+import Spinner from "./Components/Spinner";
 
-function App() {
+const Orders = React.lazy(() => import('./Pages/index'));
+const CreateOrder = React.lazy(() => import('./Pages/CreateOrder'));
+const Statistics = React.lazy(() => import('./Pages/Statistics'));
+
+const NotFound = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className={'error_page'}>
+          <span className={'error_page__code'}>{'404 '}</span>This page could not be found</div>
   );
-}
+};
 
+
+const App = () => {
+  return (
+      <div className={'global'}>
+          <div className={'global__layout'}>
+              <Suspense fallback={<Spinner/>}>
+                  <ErrorBoundary>
+                      <Routes>
+                          <Route path={'/'} element={<Orders/>}/>
+                          <Route path={'/create'} element={<CreateOrder/>}/>
+                          <Route path={'/statistic'} element={<Statistics/>}/>
+                          <Route path={'/:orderId/edit'} element={<CreateOrder/>}/>
+                          <Route path={'*'} element={<NotFound/>}/>
+                      </Routes>
+                  </ErrorBoundary>
+              </Suspense>
+          </div>
+      </div>
+  );
+};
 export default App;

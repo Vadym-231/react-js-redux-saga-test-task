@@ -1,0 +1,94 @@
+.global {
+  $this: &;
+  width: 100%;
+  display: inline-block;
+  margin-top: 10vh;
+  text-align: center;
+  &__layout  {
+    max-width: 700px;
+    display: inline-block;
+    text-align: left;
+    padding: 15px;
+  }
+}
+
+.error_page {
+  text-align: center;
+  position: fixed;
+  height: 50%;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  font-size: 22px;
+  &__code {
+    font-weight: bold;
+  }
+}
+
+.spin_loader {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgb(255 255 255 / 0.3);
+  backdrop-filter: blur(10px);
+  z-index: 1;
+  .ant-spin {
+    width: 75px;
+    height: 75px;
+    left: calc(50% - 75px);
+    top: calc(50vh - 75px);
+    position: absolute;
+    span {
+      font-size: 59px;
+    }
+    i {
+      height: 30px;
+      width: 30px;
+    }
+  }
+}
+
+.order_list_page {
+  $this: &;
+  &__container {
+    padding: 15px;
+    border: 1px solid bisque;
+    border-radius: 25px;
+  }
+}
+
+.edit_mode_page {
+  $this: &;
+  width: 100%;
+  display: inline-block;
+  &__title {
+    padding: 20px;
+    font-size: 20px;
+    .bold {
+      font-size: 30px;
+      font-weight: 700;
+    }
+  }
+  &__container {
+    max-width: 500px;
+    width: 100vw;
+    display: inline-block;
+    text-align: center;
+  }
+  &__form {
+    $this: &;
+    padding: 15px;
+    border: 1px solid bisque;
+    border-radius: 25px;
+    text-align: left;
+    &__buttons button, a {
+      width: calc(50% - 30px);
+      margin: 0 15px;
+      display: inline-block;
+    }
+  }
+}
+
+
